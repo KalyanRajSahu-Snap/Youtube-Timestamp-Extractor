@@ -42,7 +42,7 @@ This Python script extracts timestamps from YouTube videos and sends them as an 
 Download the Python script file:
 
 ```bash
-git clone https://github.com/yourusername/youtube-timestamp-extractor.git
+git clone https://github.com/KalyanRajSahu-Snap/youtube-timestamp-extractor.git
 cd youtube-timestamp-extractor
 ```
 
