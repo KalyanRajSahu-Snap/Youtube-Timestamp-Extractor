@@ -1,115 +1,113 @@
-# README: YouTube Timestamp Extractor
+# YouTube Timestamp Extractor
 
-This Python script extracts timestamps from YouTube videos and sends them as an email attachment using Gmail's SMTP server.
+A Python tool that extracts timestamps from YouTube video descriptions and emails them as a text file.
 
----
+## 📝 Description
 
-## Features
+This tool uses the YouTube Data API to extract timestamps from any YouTube video description based on the video URL. It then formats the timestamps, saves them to a text file, and emails the file to a specified recipient.
 
-- Extract timestamps from YouTube videos.
-- Send the extracted timestamps as a file attachment via email.
-- Supports Gmail's SMTP server.
+## ✨ Features
 
----
+- Extract timestamps from any YouTube video using just the URL
+- No browser automation required (uses YouTube Data API)
+- Automatically identifies common timestamp formats (0:00, 00:00, 00:00:00)
+- Saves formatted timestamps to a text file
+- Emails the extracted timestamps to any recipient
 
-## Prerequisites
+## 🛠️ Installation
 
-1. **Python Installed**:
-   Ensure Python 3.x is installed on your system.
+### Prerequisites
 
-   ```bash
-   python --version
-   ```
+- Python 3.6 or higher
+- A Google account with YouTube Data API access
+- An email account for sending the timestamps
 
-2. **Required Libraries**:
-   Install the necessary Python libraries by running:
+### Setup
 
-   ```bash
-   pip install smtplib email
-   ```
+1. Clone this repository:
+```bash
+git clone https://github.com/KalyanRajSahu-Snap/Youtube-Timestamp-Extractor.git
+cd Youtube-Timestamp-Extractor
+```
 
-3. **Gmail SMTP Access**:
-   Ensure your Gmail account has access to SMTP:
+2. Install the required packages:
+```bash
+pip install google-api-python-client
+```
 
-   - Enable "Allow Less Secure Apps" or generate an **App Password**.
+3. Get a YouTube Data API key:
+   - Go to the [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project
+   - Enable the YouTube Data API v3
+   - Create an API key under "APIs & Services" > "Credentials"
 
----
+## 🚀 Usage
 
-## How to Download and Use
-
-### **Step 1: Clone or Download**
-
-Download the Python script file:
+Run the script from the command line:
 
 ```bash
-git clone https://github.com/KalyanRajSahu-Snap/youtube-timestamp-extractor.git
-cd youtube-timestamp-extractor
+python Youtube_Timestamp_Extractor.py
 ```
 
-Alternatively, download the script directly as a ZIP file and extract it.
+Follow the prompts to enter:
+1. The YouTube video URL
+2. Your YouTube Data API key
+3. Your email address
+4. Your email password (or app password)
+5. The recipient's email address
 
-### **Step 2: Modify the Script**
+### Using Gmail
 
-Open the script file and replace the placeholder values:
+If you're using Gmail to send the email:
+1. Enable 2-step verification on your Google account
+2. Generate an app password:
+   - Go to your [Google Account settings](https://myaccount.google.com/)
+   - Navigate to Security > App passwords
+   - Select "Mail" and your device
+   - Use the generated 16-character password when prompted
 
-#### Replace Sender's Credentials:
+## 🧩 How It Works
 
-```python
-sender_email = "your-email@gmail.com"
-sender_password = "your-app-password"
+1. The script extracts the video ID from the YouTube URL
+2. It uses the YouTube Data API to fetch the video description
+3. Regular expressions identify timestamp patterns in the description
+4. Timestamps are formatted and saved to a text file
+5. The file is attached to an email and sent to the specified recipient
+
+## 🔍 Example Output
+
+The resulting text file will look something like this:
+
+```
+Timestamps found in the video:
+
+0:00 - Introduction
+1:23 - First topic
+4:56 - Second topic
+10:32 - Conclusion
 ```
 
-#### Replace Receiver's Email Address:
+## ⚠️ Limitations
 
-```python
-receiver_email = "receiver-email@example.com"
-```
+- The script can only extract timestamps that follow common formats
+- YouTube Data API has usage quotas (10,000 units per day for free tier)
+- Some email providers may block automated emails
 
-#### Replace File Path:
+## 🤝 Contributing
 
-Ensure the file path to the attachment is valid. For example:
+Contributions are welcome! Feel free to:
 
-```python
-file_path = "/path/to/your/timestamps.txt"
-```
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
----
+## 📄 License
 
-### **Step 3: Run the Script**
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-Run the Python script using the following command:
+## 🙏 Acknowledgements
 
-```bash
-python send_email_with_attachment.py
-```
-
----
-
-## Notes
-
-- **Security**:
-  - Use an **App Password** instead of your Gmail account password.
-  - Avoid hardcoding sensitive information; use environment variables instead.
-- **Attachment File**:
-  Ensure the specified file exists at the given path.
-
----
-
-## Troubleshooting
-
-- **SMTP Authentication Error**:
-  - Ensure SMTP is enabled in your Gmail account settings.
-  - Double-check your app password and email.
-- **File Not Found Error**:
-  - Verify the file path is correct and the file exists.
-
----
-
-## Example Use Case
-
-Suppose you want to extract timestamps from a YouTube video and email them to a collaborator. Update the `file_path` to point to the file containing the timestamps, replace the email addresses, and run the script to send it effortlessly.
-
----
-
-Feel free to fork and customize this script for your specific needs!
-
+- [Google for the YouTube Data API](https://developers.google.com/youtube/v3)
+- [Python Email Documentation](https://docs.python.org/3/library/email.html)
